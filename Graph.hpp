@@ -16,7 +16,6 @@ struct Edge {
 // Graph represented as adjacency list
 class Graph {
 private:
-    const size_t numVertices;
     std::vector<std::vector<Edge>> adjList; // Array of linked lists
     
 public:
@@ -25,7 +24,7 @@ public:
     void addEdge(size_t src, size_t dest, size_t weight);
     const std::string getGraphAsString() const;
 
-    size_t getNumVertices() const { return numVertices; }
+    size_t getNumVertices() const { return adjList.size(); }
     const std::vector<Edge>& getAdjList(size_t vertex) const { return adjList[vertex]; }
 };
 
