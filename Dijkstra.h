@@ -3,24 +3,13 @@
 
 #include "Graph.h"
 #include <vector>
-#include <limits>
 #include <queue>
-#include <functional>
+#include <limits>
+#include <unordered_map>
 
 class Dijkstra {
-private:
-    const Graph& graph;
-    
 public:
-    Dijkstra(const Graph& g) : graph(g) {}
-    
-    // λ (lambda) represents the distance vector
-    // T represents the set of vertices to be visited
-    // P represents parent nodes
-    std::vector<int> shortestPath(int start, std::vector<int>& lambda, std::vector<int>& P);
-    
-    // Calculate closeness centrality for all vertices
-    std::vector<double> calculateClosenessCentrality();
+    static std::vector<int> shortestPath(int start, const Graph& graph);
 };
 
 #endif // DIJKSTRA_H 

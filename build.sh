@@ -7,7 +7,7 @@ fi
 
 # Create build directory
 mkdir -p build
-cd build
+cd build || exit 1
 
 # Configure and build with CMake
 cmake ..

@@ -3,6 +3,44 @@
 #include "Graph.h"
 #include "Dijkstra.h"
 
+
+void calculateClosenessCentrality(const Graph& graph) {
+    int V = graph.getNumVertices();
+    std::vector<double> centrality(V, 0.0);
+    
+    for (int i = 0; i < V; i++) {
+        std::vector<int> distances = Dijkstra::shortestPath(i, graph);
+
+        double sumDistances = 0.0;
+        int reachableNodes = 0;
+        
+        for (int j = 0; j < V; j++) {
+            if (i != j && distances[j] != std::numeric_limits<int>::max()) {
+                sumDistances += distances[j];
+                reachableNodes++;
+            }
+        }
+        
+        if (reachableNodes > 0) {
+            centrality[i] = static_cast<double>(reachableNodes) / sumDistances;
+        }
+    }
+    
+    std::cout << "\nCloseness Centrality for each vertex:\n";
+    double maxCentrality = 0.0;
+    int bestVertex = -1;
+
+    for (int i = 0; i < V; i++) {
+        std::cout << "Vertex " << i << ": " << std::fixed << std::setprecision(6) << centrality[i] << '\n';
+        if (centrality[i] > maxCentrality) {
+            maxCentrality = centrality[i];
+            bestVertex = i;
+        }
+    }
+
+    std::cout << "\nVertex with highest closeness centrality: " << bestVertex << " (" << maxCentrality << ")" << std::endl;
+} 
+
 int main() {
     // Create a graph based on the image provided
     // s=0, 1=1, 2=2, 3=3, 4=4, 5=5, 6=6, t=7
@@ -33,29 +71,6 @@ int main() {
     std::cout << "Graph representation:" << std::endl;
     graph.printGraph();
     
-    // Calculate closeness centrality
-    Dijkstra dijkstra(graph);
-    std::vector<double> centrality = dijkstra.calculateClosenessCentrality();
-    
-    // Display results
-    std::cout << "\nCloseness Centrality for each vertex:" << std::endl;
-    std::cout << std::fixed << std::setprecision(6);
-    
-    for (int i = 0; i < graph.getNumVertices(); i++) {
-        std::string label = (i == 0) ? "s" : (i == 7) ? "t" : std::to_string(i);
-        std::cout << "Vertex " << label << ": " << centrality[i] << std::endl;
-    }
-    
-    // Find vertex with highest centrality
-    int maxCentralityVertex = 0;
-    for (int i = 1; i < graph.getNumVertices(); i++) {
-        if (centrality[i] > centrality[maxCentralityVertex]) {
-            maxCentralityVertex = i;
-        }
-    }
-    
-    std::string maxLabel = (maxCentralityVertex == 0) ? "s" : (maxCentralityVertex == 7) ? "t" : std::to_string(maxCentralityVertex);
-    std::cout << "\nVertex with highest closeness centrality: " << maxLabel << " (" << centrality[maxCentralityVertex] << ")" << std::endl;
-    
+    calculateClosenessCentrality(graph);
     return 0;
 } 
