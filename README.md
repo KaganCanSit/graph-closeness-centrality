@@ -8,9 +8,9 @@ This program calculates the **Closeness Centrality** of nodes within a graph usi
 
 The formula is:
 
-\[
+$$
 C(v) = \frac{(n-1)}{\sum d(v,u)}
-\]
+$$
 
 Where:
 - nn is the number of reachable vertices from node vv.
@@ -33,7 +33,7 @@ Additionally, this video provides a visual explanation:
 
 ## Graph Visualization
 
-![Graph Visualization](graph.jpeg)
+![Graph Visualization](https://github.com/user-attachments/assets/b19ab8b4-a97d-4871-a798-f39395d1d055)
 
 The above image shows the directed graph used in this implementation, with edge weights indicated on each connection.
 
@@ -41,7 +41,7 @@ The above image shows the directed graph used in this implementation, with edge 
 
 As required, the program uses the following data structures:
 - **Adjacency(`std::vector<std::vector<Edge>>`):** Provides an efficient and memory-friendly representation of the graph.
-- **Priority Queue (`std::priority_queue`):**
+- **Priority Queue (`std::priority_queue`):** Enhances the performance of Dijkstra’s algorithm.
 - **Vectors (`std::vector`):** Ensure safe and automatic memory management.
 
 ## Build Instructions
