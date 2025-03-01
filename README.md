@@ -1,6 +1,12 @@
 # Graph Closeness Centrality Calculator
 
 This program calculates the closeness centrality of nodes in a graph using Dijkstra's Shortest Path Algorithm. The graph is represented using an adjacency list implementation with linked lists.
+## Graph Visualization
+
+![Graph Visualization](graph.jpeg)
+
+The above image shows the directed graph used in this implementation, with edge weights indicated on each connection.
+
 
 ## Program Structure
 
