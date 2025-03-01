@@ -1,4 +1,4 @@
-#include "Dijkstra.h"
+#include "Dijkstra.hpp"
 
 std::vector<int> Dijkstra::shortestPath(int start, const Graph& graph) {
     int V = graph.getNumVertices();

@@ -1,11 +1,11 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
 
-#include "Graph.h"
 #include <vector>
 #include <queue>
 #include <limits>
-#include <unordered_map>
+
+#include "Graph.hpp"
 
 class Dijkstra {
 public:

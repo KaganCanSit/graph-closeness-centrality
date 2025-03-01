@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <iostream>
+#include <sstream>
 
 // Node in adjacency list
 struct Edge {
@@ -23,7 +23,7 @@ public:
     explicit Graph(int vertices);
     
     void addEdge(int src, int dest, int weight);
-    void printGraph() const;
+    const std::string getGraphAsString() const;
 
     int getNumVertices() const { return numVertices; }
     const std::vector<Edge>& getAdjList(int vertex) const { return adjList[vertex]; }

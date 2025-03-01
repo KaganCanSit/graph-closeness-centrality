@@ -1,8 +1,8 @@
 #include <iostream>
 #include <iomanip>
-#include "Graph.h"
-#include "Dijkstra.h"
 
+#include "Graph.hpp"
+#include "Dijkstra.hpp"
 
 void calculateClosenessCentrality(const Graph& graph) {
     int V = graph.getNumVertices();
@@ -26,19 +26,21 @@ void calculateClosenessCentrality(const Graph& graph) {
         }
     }
     
-    std::cout << "\nCloseness Centrality for each vertex:\n";
+    std::ostringstream os;
+    os << "\nCloseness Centrality for each vertex:\n";
     double maxCentrality = 0.0;
     int bestVertex = -1;
 
     for (int i = 0; i < V; i++) {
-        std::cout << "Vertex " << i << ": " << std::fixed << std::setprecision(6) << centrality[i] << '\n';
+        os << "Vertex " << i << ": " << std::fixed << std::setprecision(6) << centrality[i] << '\n';
         if (centrality[i] > maxCentrality) {
             maxCentrality = centrality[i];
             bestVertex = i;
         }
     }
 
-    std::cout << "\nVertex with highest closeness centrality: " << bestVertex << " (" << maxCentrality << ")" << std::endl;
+    os << "\nVertex with highest closeness centrality: " << bestVertex << " (" << maxCentrality << ")\n";
+    std::cout << os.str() << std::endl;
 } 
 
 int main() {
@@ -68,9 +70,7 @@ int main() {
     graph.addEdge(6, 7, 3);  // 6 -> t
     
     // Print the graph representation
-    std::cout << "Graph representation:" << std::endl;
-    graph.printGraph();
-    
+    std::cout << "Graph representation:\n" << graph.getGraphAsString() << std::endl;
     calculateClosenessCentrality(graph);
     return 0;
 } 
