@@ -7,26 +7,26 @@
 
 // Node in adjacency list
 struct Edge {
-    int destination;
-    int weight;
+    const size_t destination;
+    const size_t weight;
     
-    Edge(int dest, int w) : destination(dest), weight(w){}
+    Edge(size_t dest, size_t w) : destination(dest), weight(w){}
 };
 
 // Graph represented as adjacency list
 class Graph {
 private:
-    int numVertices;
+    const size_t numVertices;
     std::vector<std::vector<Edge>> adjList; // Array of linked lists
     
 public:
-    explicit Graph(int vertices);
+    explicit Graph(size_t vertices);
     
-    void addEdge(int src, int dest, int weight);
+    void addEdge(size_t src, size_t dest, size_t weight);
     const std::string getGraphAsString() const;
 
-    int getNumVertices() const { return numVertices; }
-    const std::vector<Edge>& getAdjList(int vertex) const { return adjList[vertex]; }
+    size_t getNumVertices() const { return numVertices; }
+    const std::vector<Edge>& getAdjList(size_t vertex) const { return adjList[vertex]; }
 };
 
 #endif // GRAPH_H 

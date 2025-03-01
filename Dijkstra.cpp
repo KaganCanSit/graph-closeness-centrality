@@ -1,11 +1,11 @@
 #include "Dijkstra.hpp"
 
-std::vector<int> Dijkstra::shortestPath(int start, const Graph& graph) {
-    int V = graph.getNumVertices();
-    std::vector<int> dist(V, std::numeric_limits<int>::max());
+std::vector<size_t> Dijkstra::shortestPath(size_t start, const Graph& graph) {
+    size_t V = graph.getNumVertices();
+    std::vector<size_t> dist(V, std::numeric_limits<size_t>::max());
     dist[start] = 0;
 
-    using Pair = std::pair<int, int>;
+    using Pair = std::pair<size_t, size_t>;
     std::priority_queue<Pair, std::vector<Pair>, std::greater<Pair>> pq;
     pq.emplace(0, start);
     
@@ -16,8 +16,8 @@ std::vector<int> Dijkstra::shortestPath(int start, const Graph& graph) {
         if (currentDist > dist[u]) continue; // Skip if already processed
         
         for (const auto& edge : graph.getAdjList(u)) {
-            int v = edge.destination;
-            int weight = edge.weight;
+            size_t v = edge.destination;
+            size_t weight = edge.weight;
             
             if (dist[u] + weight < dist[v]) {
                 dist[v] = dist[u] + weight;

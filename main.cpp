@@ -5,18 +5,18 @@
 #include "Dijkstra.hpp"
 
 void calculateClosenessCentrality(const Graph& graph) {
-    int V = graph.getNumVertices();
+    size_t V = graph.getNumVertices();
     std::vector<double> centrality(V, 0.0);
     
-    for (int i = 0; i < V; i++) {
-        std::vector<int> distances = Dijkstra::shortestPath(i, graph);
+    for (size_t i = 0; i < V; i++) {
+        std::vector<size_t> distances = Dijkstra::shortestPath(i, graph);
 
         double sumDistances = 0.0;
         int reachableNodes = 0;
         
-        for (int j = 0; j < V; j++) {
-            if (i != j && distances[j] != std::numeric_limits<int>::max()) {
-                sumDistances += distances[j];
+        for (size_t j = 0; j < V; j++) {
+            if (i != j && distances[j] != std::numeric_limits<size_t>::max()) {
+                sumDistances += static_cast<double>(distances[j]);
                 reachableNodes++;
             }
         }
@@ -29,9 +29,9 @@ void calculateClosenessCentrality(const Graph& graph) {
     std::ostringstream os;
     os << "\nCloseness Centrality for each vertex:\n";
     double maxCentrality = 0.0;
-    int bestVertex = -1;
+    size_t bestVertex = 0;
 
-    for (int i = 0; i < V; i++) {
+    for (size_t i = 0; i < V; i++) {
         os << "Vertex " << i << ": " << std::fixed << std::setprecision(6) << centrality[i] << '\n';
         if (centrality[i] > maxCentrality) {
             maxCentrality = centrality[i];
