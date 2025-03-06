@@ -1,6 +1,6 @@
 #include "Dijkstra.hpp"
 
-std::vector<size_t> Dijkstra::shortestPath(size_t start, const Graph& graph) {
+std::vector<size_t> Dijkstra::shortestPath(size_t start, const Graph& graph) noexcept {
     size_t V = graph.getNumVertices();
     std::vector<size_t> dist(V, std::numeric_limits<size_t>::max());
     dist[start] = 0;

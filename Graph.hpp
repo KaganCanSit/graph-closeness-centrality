@@ -7,10 +7,14 @@
 
 // Node in adjacency list
 struct Edge {
-    const size_t destination;
-    const size_t weight;
+    size_t destination;
+    size_t weight;
     
-    Edge(size_t dest, size_t w) : destination(dest), weight(w){}
+	// Constructor with member initializer list
+    constexpr Edge(size_t dest, size_t w) noexcept : destination(dest), weight(w){}
+
+	// Move constructor for better performance
+	constexpr Edge(Edge&& other) noexcept : destination(other.destination), weight(other.weight) {}
 };
 
 // Graph represented as adjacency list
@@ -19,13 +23,11 @@ private:
     std::vector<std::vector<Edge>> adjList; // Array of linked lists
     
 public:
-    explicit Graph(size_t vertices);
-    
+    explicit Graph(size_t vertices) noexcept;
     void addEdge(size_t src, size_t dest, size_t weight);
-    const std::string getGraphAsString() const;
-
-    size_t getNumVertices() const { return adjList.size(); }
-    const std::vector<Edge>& getAdjList(size_t vertex) const { return adjList[vertex]; }
+    [[nodiscard]] std::string getGraphAsString() const noexcept;
+    [[nodiscard]] constexpr size_t getNumVertices() const noexcept { return adjList.size(); }
+    [[nodiscard]] const std::vector<Edge>& getAdjList(size_t vertex) const noexcept { return adjList[vertex]; }
 };
 
 #endif // GRAPH_H 

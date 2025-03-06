@@ -9,7 +9,7 @@
 
 class Dijkstra {
 public:
-    static std::vector<size_t> shortestPath(size_t start, const Graph& graph);
+    [[nodiscard]] static std::vector<size_t> shortestPath(size_t start, const Graph& graph) noexcept;
 };
 
 #endif // DIJKSTRA_H 
